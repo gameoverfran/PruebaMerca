@@ -1,0 +1,91 @@
+<div class="container-xl px-4 mt-2 backfran">
+    <h1 class="display-4">Listado de inmuebles</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-body">
+        
+    <form>
+        <div class="mb-3 row">
+            <label for="table-filtering-search" class="col-xs-3 col-sm-auto
+                col-form-label">Buscador:</label>
+            <div class="col-xs-3 col-sm-auto">
+                <input id="table-filtering-search" class="form-control"
+                    type="text" [formControl]="filter">
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" sortableInmueble="idinmueble"
+                    (sortInmueble)="onSort($event)">ID del inmueble</th>
+                <th scope="col" sortableInmueble="usuario_idusuario"
+                    (sortInmueble)="onSort($event)">ID usuario creador</th>
+                <th scope="col"
+                    sortableInmueble="proyecto_inmobiliario_idproyecto_inmobiliario"
+                    (sortInmueble)="onSort($event)">ID proyecto</th>
+                <th scope="col" sortableInmueble="valor"
+                    (sortInmueble)="onSort($event)">Valor</th>
+                <th scope="col" sortableInmueble="tipo"
+                    (sortInmueble)="onSort($event)">Tipo</th>
+                <th scope="col" sortableInmueble="tipo"
+                    (sortInmueble)="onSort($event)">SubTipo</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inmueble of inmuebles">
+                <th scope="row">{{inmueble.idinmueble}}</th>
+                <td>
+                    {{ inmueble.usuario_idusuario }}
+                </td>
+                <td>
+                    {{ inmueble.proyecto_inmobiliario_idproyecto_inmobiliario}}
+                </td>
+                <td>
+                    {{inmueble.valor | number }} €
+                </td>
+                <td>
+                    {{ inmueble.tipo}}
+                </td>
+                <td *ngIf="inmueble.tipo === this.enumTipoInmueble.Terreno">
+                    {{ inmueble.tipo_terreno}}
+                </td>
+                <td *ngIf="inmueble.tipo === this.enumTipoInmueble.Edificacion">
+                    {{ inmueble.tipo_edificacion}}
+                </td>
+                <td class="overflow-hidden">
+                    <div ngbDropdown container="body">
+                        <button class="btn btn-outline-primary btn-sm"
+                            ngbDropdownToggle>Acciones</button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem
+                                (click)="showInmueble(inmueble)">Ver Inmueble</button>
+                            <button ngbDropdownItem>Editar</button>
+                            <div class="dropdown-divider"></div>
+                            <button ngbDropdownItem>Borrar</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page"
+            [pageSize]="pageSize" (pageChange)="refreshInmuebles()">
+        </ngb-pagination>
+        <a  [routerLink]="['/inmuebles/add']" ><button type="button" class="btn btn-success">Añadir inmueble</button></a>
+        
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize"
+            (ngModelChange)="refreshInmuebles()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+        </select>
+    </div>
+</div>
+<app-aviso></app-aviso>
+</div></div>

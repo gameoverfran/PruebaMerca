@@ -1,0 +1,59 @@
+$my_left: calc(50% - 5px)
+
+.backfran
+    background-color: white
+    padding-bottom:  10px
+    border: 1px solid rgba(0, 0, 0, 0.325)
+    border-radius: 5px
+
+.table-striped
+    text-align: center
+
+.table-striped > thead > tr > th 
+    cursor: pointer
+    position: relative
+
+.table-striped > thead > tr > th:after,
+.table-striped > thead > tr > th:after,
+.table-striped > thead > tr > th:after 
+    content: ' '
+    position: absolute 
+    //top: 1px
+    display: none
+
+
+.table-striped > thead > tr > th:after 
+    border-left: 5px solid transparent
+    border-right: 5px solid transparent
+    //border-top: 5px solid #888
+    border-bottom: 0px solid transparent
+    left: $my_left
+    
+
+.table-striped > thead > tr > th:hover:after 
+    //border-top: 5px solid #ccc
+    display: block
+    left: $my_left
+
+
+.table-striped > thead > tr > th.asc:after 
+    border-left: 5px solid transparent
+    border-right: 5px solid transparent
+    border-top: 0px solid transparent
+    border-bottom: 5px solid #888
+    display: block
+    left: $my_left
+
+.table-striped > thead > tr > th.asc:hover:after 
+    border-bottom: 5px solid #333
+    display: block
+    left: $my_left
+
+
+.table-striped > thead > tr > th.desc:after 
+    border-left: 5px solid transparent
+    border-right: 5px solid transparent
+    border-top: 5px solid #333
+    border-bottom: 5px solid transparent
+    display: block
+    left: $my_left

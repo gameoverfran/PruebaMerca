@@ -1,0 +1,82 @@
+<div class="container-xl px-4 mt-2 backfran">
+    <h1 class="display-4">Listado de inversiones</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-body">
+        
+    <form>
+        <div class="mb-3 row">
+            <label for="table-filtering-search" class="col-xs-3 col-sm-auto
+                col-form-label">Buscador:</label>
+            <div class="col-xs-3 col-sm-auto">
+                <input id="table-filtering-search" class="form-control"
+                    type="text" [formControl]="filter">
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" sortableInversion="idinversion"
+                (sortInversion)="onSort($event)">ID inversion</th>
+                <th scope="col" sortableInversion="usuario_idusuario"
+                (sortInversion)="onSort($event)">ID usuario</th>
+                <th scope="col" sortableInversion="proyecto_inmobiliario_idproyecto_inmobiliario"
+                (sortInversion)="onSort($event)">ID proyecto</th>
+                <th scope="col" sortableInversion="estado_inversion"
+                (sortInversion)="onSort($event)">Estado de la inversion</th>
+                <th scope="col" sortableInversion="fecha_inversion"
+                (sortInversion)="onSort($event)">Fecha de la inversión</th>
+                <th scope="col" sortableInversion="fecha_inversion"
+                (sortInversion)="onSort($event)">Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let inversion of inversiones">
+                <th scope="row">{{inversion.idinversion}}</th>
+                <td>
+                    {{ inversion.usuario_idusuario}}
+                 </td>
+                 <td>
+                    {{ inversion.proyecto_inmobiliario_idproyecto_inmobiliario}}
+                 </td>
+                <td>
+                    {{ inversion.estado_inversion }}
+                </td>
+                <td>
+                   {{ inversion.fecha_inversion}}
+                </td>
+                <td>
+                    {{ inversion.cantidad | number}} €
+                </td>
+                <td class="overflow-hidden">
+                    <div ngbDropdown container="body">
+                        <button class="btn btn-outline-primary btn-sm"
+                            ngbDropdownToggle>Acciones</button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem
+                                (click)="showInversion(inversion)">Ver Perfil</button>
+                            <button ngbDropdownItem>Edit</button>
+                            <div class="dropdown-divider"></div>
+                            <button ngbDropdownItem>Delete</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page"
+            [pageSize]="pageSize" (pageChange)="refreshInversiones()">
+        </ngb-pagination>
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize"
+            (ngModelChange)="refreshInversiones()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+        </select>
+    </div>
+</div>
+<app-aviso></app-aviso>
+</div></div>

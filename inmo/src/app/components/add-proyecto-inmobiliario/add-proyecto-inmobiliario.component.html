@@ -1,0 +1,142 @@
+<div class="container-xl px-4 mt-2 backfran">
+    <h1 class="display-4">Nuevo proyecto inmobiliario: {{proyecto.nombre}}</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Datos del nuevo proyecto</h5>
+        </div>
+
+        <div class="card-body">
+            <form action="" (ngSubmit)="onSubmit()">
+                <!--<form ngNoForm  action='http://localhost/add_usuario.php' method="post">-->
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label"
+                                for="valor_total_proyecto">Valor total proyecto:</label>
+                            <input type="number" id="valor_total_proyecto"
+                                class="form-control"
+                                name="valor_total_proyecto"
+                                [(ngModel)]="proyecto.valor_total_proyecto" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label"
+                                for="rentabilidad_estimada">Rentabilidad estimada:</label>
+                            <input type="number" id="rentabilidad_estimada"
+                                class="form-control"
+                                name="rentabilidad_estimada"
+                                [(ngModel)]="proyecto.rentabilidad_estimada"
+                                />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label"
+                                for="valor_min_inicio_proy">Valor min inicio proy:</label>
+                            <input type="number" id="valor_min_inicio_proy"
+                                class="form-control"
+                                name="valor_min_inicio_proy"
+                                [(ngModel)]="proyecto.valor_min_inicio_proy" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label"
+                                for="sum_valores_aportados">Sum valores aportados:</label>
+                            <input type="number" id="sum_valores_aportados"
+                                class="form-control"
+                                name="sum_valores_aportados"
+                                [(ngModel)]="proyecto.sum_valores_aportados"
+                                />
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="Amueblado">Amueblado:</label>
+                            <select (change)="selectChangeHandlerActivo($event)"
+                                class="form-select" aria-label="Default select
+                                example">
+                                <option value="" selected disabled hidden
+                                    [selected]="true">---</option>
+                                <option value="1">Sí</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="nombre">Nombre del proyecto:</label>
+                            <input type="text" id="nombre"
+                            class="form-control"
+                            name="nombre"
+                            [(ngModel)]="proyecto.nombre" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-outline">
+                            <label class="form-label" for="Amueblado">Inmuebles:</label>
+                            <ngb-accordion #acc="ngbAccordion"
+                                >
+                                <ngb-panel title="Inmuebles disponibles">
+                                    <ng-template ngbPanelContent>
+                                        <mat-selection-list name="inmuebles" [(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)">
+                                            <mat-list-option *ngFor="let inmueble of inmuebles" [value]="inmueble">
+                                                <p><strong> Nombre: </strong>{{inmueble.nombre}} (<strong>ID:</strong> {{inmueble.idinmueble}}) </p>
+                                                <hr>
+                                            </mat-list-option>
+                                        </mat-selection-list>
+                                        <hr class="mt-0 mb-4">
+                                    </ng-template>
+                                </ngb-panel>
+                            </ngb-accordion>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb-4">
+                    <label for="doc_plusvalia"><h5 class="card-title">Doc
+                            plusvalia:</h5></label>
+                    <input type="file" class="form-control-file"
+                        id="doc_plusvalia"
+                        name="doc_plusvalia"
+                        (change)="onChange($event)" />
+                </div>
+
+                <!--div class="row mb-4" *ngIf="previsualizacion"-->
+                <div class="row mb-4" *ngIf="pdfSrc != ''">
+                    <div class="col">
+                        <div class="form-outline">
+                            <pdf-viewer [src]="pdfSrc"
+
+                                [show-borders]="true"
+                                style="width: 100%; height: 500px"></pdf-viewer>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Submit button -->
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-3 text-center">
+                <button type="submit" class="btn btn-primary btn-block mb-4">Añadir proyecto</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-aviso></app-aviso>

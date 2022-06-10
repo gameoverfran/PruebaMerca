@@ -1,0 +1,153 @@
+<div class="container-xl px-4 mt-2 backfran">
+    <h1 class="display-4">Información del usuario {{usuario.nombre}} {{usuario.apellido}}:</h1>
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img [src]="previsualizacion" alt="Sube una img">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="num_ident">Número de
+                                DNI / Pasaporte:</label>
+                            <input class="form-control" id="num_ident"
+                                type="text" placeholder="Número de DNI / Pasaporte" readonly
+                                value="{{usuario.num_ident}}">
+                        </div>
+                        <hr class="mt-0 mb-1">
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="nombre">Nombre:</label>
+                                <input class="form-control" id="nombre"
+                                    type="text" placeholder="nombre" readonly
+                                    value="{{usuario.nombre}}">
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="apellido">Apellido:</label>
+                                <input class="form-control" id="apellido"
+                                    type="text" placeholder="apellido" readonly
+                                    value="{{usuario.apellido}}">
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="email">Email:</label>
+                                <input class="form-control" id="email"
+                                    type="email" placeholder="email" readonly
+                                    value="{{usuario.email}}">
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="telefono">Telefono:</label>
+                                <input class="form-control" id="telefono"
+                                    type="number" placeholder="telefono"
+                                    readonly value="{{usuario.telefono}}">
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-1">
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-3">
+                                <label class="small mb-1" for="nacionalidad">Nacionalidad:</label>
+                                <input class="form-control" id="nacionalidad"
+                                    type="text" placeholder="nacionalidad"
+                                    readonly value="{{usuario.nacionalidad}}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="small mb-1" for="comunidad_aut">Comunidad autonoma:</label>
+                                <input class="form-control" id="comunidad_aut"
+                                    type="text" name="comunidad_aut"
+                                    placeholder="comunidad_aut" readonly
+                                    value="{{usuario.comunidad_aut}}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="small mb-1" for="provincia">Provincia:</label>
+                                <input class="form-control" id="provincia"
+                                    type="text" name="provincia"
+                                    placeholder="provincia" readonly
+                                    value="{{usuario.provincia}}">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="small mb-1" for="poblacion">Poblacion:</label>
+                                <input class="form-control" id="poblacion"
+                                    type="text" name="poblacion"
+                                    placeholder="poblacion" readonly
+                                    value="{{usuario.poblacion}}">
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-4">
+                                <label class="small mb-1" for="cp">C.P:</label>
+                                <input class="form-control" id="cp"
+                                    type="text" name="cp"
+                                    placeholder="cp" readonly
+                                    value="{{usuario.cp}}">
+                            </div>
+                            <div class="col-md-8">
+                                <label class="small mb-1" for="direccion">Direccion:</label>
+                                <input class="form-control" id="direccion"
+                                    type="text" name="direccion"
+                                    placeholder="direccion" readonly
+                                    value="{{usuario.direccion}}">
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-1">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fecha_registro">Fecha
+                                    de registro:</label>
+                                <input class="form-control" id="fecha_registro"
+                                    type="text" placeholder="fecha_registro"
+                                    readonly value="{{usuario.fecha_registro | date}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="fecha_verificacion">Fecha de verificacion:</label>
+                                <input class="form-control" id="fecha_verificacion"
+                                    type="text" placeholder="fecha_verificacion"
+                                    readonly value="{{usuario.fecha_verificacion | date}}">
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-1">
+                        <div class="row gx-3 mb-3">
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="password">Contraseña:</label>
+
+                                    <input class="form-control" id="password"
+                                    [type]="show ? 'text' : 'password'" 
+                                    placeholder="password"
+                                    readonly value="{{usuario.password}}"/>
+                                    
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="password">Contraseña:</label>
+                                <input class="form-control" id="passwordRepeat"
+                                    type="password" placeholder="password"
+                                    readonly value="{{usuario.password}}">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="button">Save
+                            changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-aviso></app-aviso>

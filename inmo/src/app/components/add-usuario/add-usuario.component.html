@@ -1,0 +1,149 @@
+<div class="container-xl px-4 mt-2 backfran">
+  <h1 class="display-4">Nuevo usuario: {{usuario.nombre}}</h1>
+  <hr class="mt-0 mb-4">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">Datos del usuario</h5>
+    </div>
+
+    <div class="card-body">
+      <form action="" (ngSubmit)="onSubmit()">
+        <!--<form ngNoForm  action='http://localhost/add_usuario.php' method="post">-->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="num_ident">Número de DNI / Pasaporte:</label>
+          <input type="text" id="num_ident" class="form-control"
+            name="num_ident"
+            [(ngModel)]="usuario.num_ident" required/>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="nombre">Nombre:</label>
+              <input type="text" id="nombre" class="form-control" name="nombre"
+                [(ngModel)]="usuario.nombre" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="apellido">Apellido:</label>
+              <input type="text" id="apellido" class="form-control"
+                name="apellido" [(ngModel)]="usuario.apellido" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Email input -->
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="email">Email:</label>
+              <input type="email" id="email" class="form-control" name="email"
+                [(ngModel)]="usuario.email" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="telefono">Telefono:</label>
+              <input type="number" id="telefono"
+                oninput="javascript: if (this.value.length> this.maxLength)
+              this.value = this.value.slice(0, this.maxLength);"
+              maxlength = "9"
+              min = "600000000"
+              max = "969999999"
+              class="form-control"
+              name="telefono" [(ngModel)]="usuario.telefono"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="password">Contraseña</label>
+              <input type="password" id="password" class="form-control"
+                name="password" [(ngModel)]="usuario.password" />
+
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="passwordRepeat">Repite contraseña</label>
+              <input type="password" id="passwordRepeat" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="nacionalidad">Nacionalidad:</label>
+              <input type="text" id="nacionalidad" class="form-control"
+                name="nacionalidad" [(ngModel)]="usuario.nacionalidad" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="comunidad_aut">Comunidad autonoma:</label>
+              <input type="text" id="comunidad_aut" class="form-control"
+                name="comunidad_aut" [(ngModel)]="usuario.comunidad_aut" />
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="provincia">Provincia:</label>
+              <input type="text" id="provincia" class="form-control"
+                name="provincia" [(ngModel)]="usuario.provincia"
+                />
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="poblacion">Poblacion:</label>
+              <input type="text" id="poblacion" class="form-control"
+                name="poblacion" [(ngModel)]="usuario.poblacion" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="cp">CP:</label>
+              <input type="number"
+                oninput="javascript: if (this.value.length> this.maxLength)
+              this.value = this.value.slice(0, this.maxLength);"
+              maxlength = "5"
+              id="cp" class="form-control"
+              name="cp" [(ngModel)]="usuario.cp"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-outline mb-4">
+          <label class="form-label" for="direccion">Dirección:</label>
+          <input type="text" id="direccion" class="form-control"
+            name="direccion" [(ngModel)]="usuario.direccion" />
+
+        </div>
+
+        <div class="row mb-4">
+          <label for="dni_pasaporte_foto"><h5 class="card-title">Foto DNI / Pasaporte</h5></label>
+          <input type="file" class="form-control-file" id="dni_pasaporte_foto"
+            name="dni_pasaporte_foto"
+            (change)="onChange($event)" />
+        </div>
+        <div class="row mb-4" *ngIf="previsualizacion">
+          <img [src]="previsualizacion" alt="Sube una img" class="fotodni" width="100" height="200">
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Unirme</button>
+      </form>
+    </div>
+  </div>
+</div>
+<app-aviso></app-aviso>

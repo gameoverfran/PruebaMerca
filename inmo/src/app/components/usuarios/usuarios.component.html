@@ -1,0 +1,87 @@
+
+<div class="container-xl px-4 mt-2 backfran">
+  <h1 class="display-4"> Listado de usuarios</h1>
+<hr class="mt-0 mb-4">
+
+<div class="card">
+  <div class="card-body">
+<form>
+  <div class="mb-3 row">
+    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Buscador:</label>
+    <div class="col-xs-3 col-sm-auto">
+      <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col" >DNI / pasaporte</th>
+      <th scope="col" sortable="nombre" (sort)="onSort($event)">Nombre</th>
+      <th scope="col" sortable="apellido" (sort)="onSort($event)">Apellido</th>
+      <th scope="col" sortable="cuenta_suspendida" (sort)="onSort($event)">Suspendido</th>
+      <th scope="col" sortable="fecha_registro" (sort)="onSort($event)">Fecha registro</th>
+      <th scope="col" sortable="verificado" (sort)="onSort($event)">Verificado</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <th scope="row">{{usuario.idusuario}}</th>
+      <td>
+        {{usuario.num_ident}}
+      </td>
+
+      <td>
+        {{ usuario.nombre }}
+      </td>
+      <td>
+        {{ usuario.apellido }}
+      </td>
+      <td>
+        {{ usuario.cuenta_suspendida | personalBoolean: "cuenta_suspendida" }}
+      </td>
+      <td>
+        {{ usuario.fecha_registro | date  }}
+      </td>
+
+      <td>
+        {{ usuario.verificado| personalBoolean }}
+      </td>
+      <td class="overflow-hidden">
+        <div ngbDropdown container="body">
+          <button class="btn btn-outline-primary btn-sm" ngbDropdownToggle>Acciones</button>
+          <div ngbDropdownMenu>
+            <button ngbDropdownItem (click)="showUsuario(usuario)">Ver Usuario</button>
+            <button ngbDropdownItem>Editar</button>
+            <div class="dropdown-divider"></div>
+            <button ngbDropdownItem>Borrar</button>
+          </div>
+        </div>
+      </td>
+
+      <!--<app-usuario [usuario]="usuario" (deleteItem)="deleteUsuario($event)" (toggleItem)="toggleUsuario($event)"></app-usuario>-->
+    </tr>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshUsuarios()">
+  </ngb-pagination>
+  <a  [routerLink]="['/usuarios/add']" ><button type="button" class="btn btn-success">Añadir usuario</button></a>
+
+  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshUsuarios()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
+</div>
+
+</div>
+
+<app-aviso></app-aviso>
+
+</div>
+</div>

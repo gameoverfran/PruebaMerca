@@ -1,0 +1,36 @@
+export interface InmuebleInterface {
+    idinmueble: number;
+    usuario_idusuario: number;
+    proyecto_inmobiliario_idproyecto_inmobiliario: number;
+    valor: number;
+    anejos: string;
+    metros: number;
+    informacion_extra: string;
+    situacion: string;
+    comunidad_autonoma: string;
+    provincia: string;
+    poblacion: string;
+    cp: number;
+    calle: string;
+    numero_calle: string;
+    fecha_construccion: Date;
+    tipo: string;
+    tipo_terreno: string;
+    tipo_edificacion: string;
+    aprovechamiento: string;
+    conservacion: string;
+    numero_edificio: string;
+    gastos_comunidad: number;
+    acondicionamiento: string;
+    tipo_instalacion: string;
+    titularidad: string;
+    amueblado: number;
+    habitaciones: number;
+    banos: number;
+    trastero: number;
+    garaje: number;
+    orientacion: string;
+    terraza: number;
+    fotosList?: Array<String>;
+    nombre: string;
+}

@@ -1,0 +1,496 @@
+<div class="container-xl px-4 mt-2 backfran">
+  <h1 class="display-4">Nuevo inmueble: {{inmueble.nombre}}</h1>
+  <hr class="mt-0 mb-4">
+
+  <form action="" (ngSubmit)="onSubmit()">
+    <!--form ngNoForm  action='http://localhost/add_inmueble.php' method="post"-->
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">Datos del inmueble</h5>
+      </div>
+
+      <div class="card-body">
+
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="valor">Valor: {{inmueble.valor |
+                currency: 'EUR' }}</label>
+              <input type="number" id="valor" class="form-control"
+                name="valor"
+                [(ngModel)]="inmueble.valor" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="vaor">Fecha creación:</label>
+              <div class="input-group">
+
+                <input class="form-control"
+                  [(ngModel)]="inmueble.fecha_construccion"
+                  placeholder="yyyy-mm-dd"
+                  name="fecha_construccion" [(ngModel)]="model" ngbDatepicker
+                  #d="ngbDatepicker">
+                <button class="btn btn-outline-secondary calendar"
+                  (click)="d.toggle()" type="button"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="anejos">Anejos:</label>
+              <input type="text" id="anejos" class="form-control" name="anejos"
+                [(ngModel)]="inmueble.anejos" />
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="metros">Metros (m²):</label>
+              <input type="number" id="metros" class="form-control"
+                name="metros" [(ngModel)]="inmueble.metros" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="informacion_extra">Información
+                extra:</label>
+              <textarea type="email" id="informacion_extra" class="form-control"
+                name="informacion_extra"
+                [(ngModel)]="inmueble.informacion_extra">
+              </textarea>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="telefono">Situación:</label>
+              <input type="text" id="situacion" class="form-control"
+                name="situacion" [(ngModel)]="inmueble.situacion"
+                />
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row mb-4">
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="comunidad_aut">C.autonoma:</label>
+              <input type="text" id="comunidad_aut" class="form-control"
+                name="comunidad_aut" [(ngModel)]="inmueble.comunidad_autonoma"
+                />
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="provincia">Provincia:</label>
+              <input type="text" id="provincia" class="form-control"
+                name="provincia" [(ngModel)]="inmueble.provincia" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="poblacion">Poblacion:</label>
+              <input type="text" id="poblacion" class="form-control"
+                name="poblacion" [(ngModel)]="inmueble.poblacion" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="cp">CP:</label>
+              <input type="number"
+                id="cp" class="form-control"
+                name="cp" [(ngModel)]="inmueble.cp" />
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mb-4">
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="calle">Calle:</label>
+              <input type="text" id="calle" class="form-control" name="calle"
+                [(ngModel)]="inmueble.calle" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="numero_calle">Número:</label>
+              <input type="text" id="numero_calle" class="form-control"
+                name="numero_calle" [(ngModel)]="inmueble.numero_calle"
+                />
+            </div>
+          </div>
+
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="nombre">Nombre:</label>
+              <input type="text" id="nombre" class="form-control"
+                name="nombre" [(ngModel)]="inmueble.nombre"
+                />
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row mb-4">
+
+          <div class="col">
+            <div class="form-outline">
+              <div ngbDropdown class="d-inline-block">
+                <label class="form-label">Tipo: </label>
+                <select (change)="selectChangeHandlerTipoInmueble($event)"
+                  class="form-select" aria-label="Default select example"
+                  name="tipo">
+                  <option value="" selected disabled hidden [selected]="true">---</option>
+                  <option *ngFor="let enum of enumTipoInmueble| keyvalue"
+                    value="{{enum.value}}">{{ enum.key}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" *ngIf="this.inmueble.tipo ===
+            this.enumTipoInmueble.Edificacion">
+            <div class="form-outline">
+              <div ngbDropdown class="d-inline-block">
+                <label class="form-label">T. Edificacion: </label>
+                <select (change)="selectChangeHandlerTipoEdificacion($event)"
+                  class="form-select" name="tipo_edificacion">
+                  <option value="" selected disabled hidden>---</option>
+                  <option *ngFor="let enum of enumTipoEdificacion| keyvalue"
+                    value="{{enum.value}}">{{ enum.key}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" *ngIf="this.inmueble.tipo ===
+            this.enumTipoInmueble.Terreno">
+            <div class="form-outline">
+              <div ngbDropdown class="d-inline-block">
+                <label class="form-label">T. Terreno: </label>
+                <select (change)="selectChangeHandlerTipoTerreno($event)"
+                  class="form-select" name="tipo_terreno">
+                  <option value="" selected disabled hidden>---</option>
+
+                  <option *ngFor="let enum of enumTipoTerreno| keyvalue"
+                    value="{{enum.value}}">{{enum.key}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" *ngIf="this.inmueble.tipo ===
+            this.enumTipoInmueble.NoTipo">
+            <div class="form-outline">
+              <div ngbDropdown class="d-inline-block">
+                <label class="form-label">Subtipo</label>
+                <select class="form-select" disabled>
+                  <option value="" selected disabled hidden>---</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+    <hr *ngIf="this.inmueble.tipo !==
+      this.enumTipoInmueble.NoTipo">
+
+    <div class="card" *ngIf="this.inmueble.tipo ===
+      this.enumTipoInmueble.Edificacion">
+
+      <div class="card-header">
+        <h5 class="card-title">Datos de la edificación</h5>                
+      </div>
+
+      <div class="card-body">
+
+        <div class="row mb-4">
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="conservacion">Conservacion:</label>
+              <input type="text" id="conservacion" class="form-control"
+                name="conservacion"
+                [(ngModel)]="inmueble.conservacion" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="numero_edificio">Número (edif):</label>
+              <input type="text" id="numero_edificio" class="form-control"
+                name="numero_edificio" [(ngModel)]="inmueble.numero_edificio" />
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="gastos_comunidad">Gastos:</label>
+              <input type="number" id="gastos_comunidad" class="form-control"
+                name="gastos_comunidad"
+                [(ngModel)]="inmueble.gastos_comunidad" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr *ngIf="this.inmueble.tipo ===
+      this.enumTipoInmueble.Edificacion">
+    <!-- ////////////////////////////////////////////////////////////////// -->
+    <div class="row mb-4" *ngIf="this.inmueble.tipo ===
+      this.enumTipoInmueble.Edificacion">
+
+      <div class="col"
+        *ngIf="this.inmueble.tipo_edificacion ===
+        this.enumTipoEdificacion.Local">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Datos del local</h5>
+          </div>
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+
+      <div class="col"
+        *ngIf="this.inmueble.tipo_edificacion ===
+        this.enumTipoEdificacion.Nave">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Datos de la nave</h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="acondicionamiento">Acondicionamiento:</label>
+                  <input type="text" id="acondicionamiento" class="form-control"
+                    name="acondicionamiento"
+                    [(ngModel)]="inmueble.acondicionamiento" />
+                </div>
+              </div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"
+        *ngIf="this.inmueble.tipo_edificacion ===
+        this.enumTipoEdificacion.Instalacion">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+            Datos de la instalacion
+          </h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="tipo_instalacion">Tipo:</label>
+                  <input type="text" id="tipo_instalacion" class="form-control"
+                    name="tipo_instalacion"
+                    [(ngModel)]="inmueble.tipo_instalacion" />
+                </div>
+              </div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"
+        *ngIf="this.inmueble.tipo_edificacion ===
+        this.enumTipoEdificacion.Vivienda">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+              Datos de la vivienda
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="habitaciones">Habitaciones:</label>
+                  <input type="number" id="habitaciones" class="form-control"
+                    name="habitaciones"
+                    [(ngModel)]="inmueble.habitaciones" />
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="banos">Baños:</label>
+                  <input type="number" id="banos" class="form-control"
+                    name="banos"
+                    [(ngModel)]="inmueble.banos" />
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="trastero">Trastero:</label>
+                  <input type="number" id="trastero" class="form-control"
+                    name="trastero"
+                    [(ngModel)]="inmueble.trastero" />
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="garaje">Garaje:</label>
+                  <input type="number" id="garaje" class="form-control"
+                    name="garaje"
+                    [(ngModel)]="inmueble.garaje" />
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="terraza">Terraza:</label>
+                  <input type="number" id="terraza" class="form-control"
+                    name="terraza"
+                    [(ngModel)]="inmueble.terraza" />
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="orientacion">Orientación:</label>
+                  <input type="text" id="orientacion" class="form-control"
+                    name="orientacion"
+                    [(ngModel)]="inmueble.orientacion" />
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="Amueblado">Amueblado:</label>
+                  <select (change)="selectChangeHandlerAmueblado($event)"
+                    class="form-select" aria-label="Default select example">
+                    <option value="" selected disabled hidden [selected]="true">---</option>
+                    <option value="1">Sí</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"
+        *ngIf="this.inmueble.tipo_edificacion ===
+        this.enumTipoEdificacion.Trastero">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+            Datos del trastero
+          </h5>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <label class="form-label" for="titularidad">Titularidad:</label>
+                  <input type="text" id="titularidad" class="form-control"
+                    name="titularidad"
+                    [(ngModel)]="inmueble.titularidad" />
+                </div>
+              </div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"
+        *ngIf="this.inmueble.tipo_edificacion ===
+        this.enumTipoEdificacion.Garaje">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">
+            Datos del garaje
+          </h5>
+          </div>
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- ////////////////////////////////////////////////////////////////// -->
+    <div class="card" *ngIf="this.inmueble.tipo ===
+      this.enumTipoInmueble.Terreno">
+      <div class="card-header">
+        <h5 class="card-title">
+        Datos del terreno
+      </h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col">
+            <div class="form-outline">
+              <label class="form-label" for="aprovechamiento">Aprovechamiento:</label>
+              <input type="text" id="aprovechamiento" class="form-control"
+                name="aprovechamiento"
+                [(ngModel)]="inmueble.aprovechamiento" />
+            </div>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+
+    <hr *ngIf="visibleSubmit()">
+
+
+    <div class="row mb-4" *ngIf="visibleSubmit()">
+      <label for="fotos">  <h5 class="card-title">Fotos del inmueble:</h5></label>
+      <input type="file" multiple class="form-control-file" id="fotos"
+        name="fotos"
+        (change)="onChange($event)" />
+    </div>
+  
+
+
+    <div class="container" *ngIf="visibleSubmit()">
+      <div class="row">
+        <div class="col text-center">
+          <button type="submit" class="btn btn-primary mb-4">Añadir</button>
+        </div>
+      </div>
+    </div>
+
+
+  </form>
+</div>
+<app-aviso></app-aviso>
+

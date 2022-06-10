@@ -1,0 +1,79 @@
+<div class="container-xl px-4 mt-2 backfran">
+    <h1 class="display-4">Listado de proyectos</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-body">
+        
+    <form>
+        <div class="mb-3 row">
+            <label for="table-filtering-search" class="col-xs-3 col-sm-auto
+                col-form-label">Buscador:</label>
+            <div class="col-xs-3 col-sm-auto">
+                <input id="table-filtering-search" class="form-control"
+                    type="text" [formControl]="filter">
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" sortableProyecto="idproyecto_inmobiliario"
+                (sortProyecto)="onSort($event)">ID proyecto</th>
+                <th scope="col" sortableProyecto="valor_total_proyecto"
+                (sortProyecto)="onSort($event)">Valor total</th>
+                <th scope="col" sortableProyecto="rentabilidad_estimada"
+                (sortProyecto)="onSort($event)">Rentabilidad</th>
+                <th scope="col" sortableProyecto="sum_valores_aportados"
+                (sortProyecto)="onSort($event)">Aportaciones</th>
+                <th scope="col" sortableProyecto="proyecto_activo"
+                (sortProyecto)="onSort($event)">Proyecto activo</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let proyecto of proyectos">
+                <th scope="row">{{proyecto.idproyecto_inmobiliario}}</th>
+                <td>
+                    {{ proyecto.valor_total_proyecto | number }} €
+                </td>
+                <td>
+                   {{ proyecto.rentabilidad_estimada | number }} %
+                </td>
+                <td>
+                    {{ proyecto.sum_valores_aportados | number }} €
+                </td>
+                <td>
+                    {{ proyecto.proyecto_activo | personalBoolean}}
+                </td>
+                <td class="overflow-hidden">
+                    <div ngbDropdown container="body">
+                        <button class="btn btn-outline-primary btn-sm"
+                            ngbDropdownToggle>Acciones</button>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem
+                                (click)="showProyecto(proyecto)">Ver Perfil</button>
+                            <button ngbDropdownItem>Edit</button>
+                            <div class="dropdown-divider"></div>
+                            <button ngbDropdownItem>Delete</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page"
+            [pageSize]="pageSize" (pageChange)="refreshProyectos()">
+        </ngb-pagination>
+
+        <a  [routerLink]="['/proyectos/add']" ><button type="button" class="btn btn-success">Añadir proyectos</button></a>
+        <select class="form-select" style="width: auto" [(ngModel)]="pageSize"
+            (ngModelChange)="refreshProyectos()">
+            <option [ngValue]="2">2 items per page</option>
+            <option [ngValue]="4">4 items per page</option>
+            <option [ngValue]="6">6 items per page</option>
+        </select>
+    </div>
+</div>
+<app-aviso></app-aviso>
+</div></div>

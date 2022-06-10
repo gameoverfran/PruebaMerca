@@ -1,0 +1,454 @@
+<div class="container-xl px-4 mt-2 backfran">
+    <h1 class="display-4">Información del inmueble: {{inmueble.idinmueble}}</h1>
+    <hr class="mt-0 mb-4">
+    <div class="card">
+        <div class="card-body">
+
+            <div class="container">
+                <div class="main-body">
+                    <div class="row gutters-sm">
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                    Carousel de fotos
+                                </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex flex-column
+                                        align-items-center text-center">
+                                        <ngb-carousel *ngIf="images">
+                                            <ng-template ngbSlide *ngFor="let foto of images">
+                                                <div class="picsum-img-wrapper">
+                                                    <img [src]="foto"
+                                                        alt="Random first slide"
+                                                        class="mh-100"
+                                                        style="width: 100%;
+                                                        height: 30vh">
+                                                </div>
+                                            </ng-template>
+
+                                        </ngb-carousel>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                    Información
+                                    </h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex
+                                    justify-content-between
+                                    align-items-center flex-wrap">
+                                    <h6 class="mb-0">Nombre</h6>
+                                    <span class="text-secondary">{{inmueble.nombre}}</span>
+                                </li>
+                                    <li class="list-group-item d-flex
+                                        justify-content-between
+                                        align-items-center flex-wrap">
+                                        <h6 class="mb-0">Valor</h6>
+                                        <span class="text-secondary">{{inmueble.valor|
+                                            currency: 'EUR' }}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex
+                                        justify-content-between
+                                        align-items-center flex-wrap">
+                                        <h6 class="mb-0">Metros²</h6>
+                                        <span class="text-secondary">{{inmueble.metros}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex
+                                        justify-content-between
+                                        align-items-center flex-wrap">
+                                        <h6 class="mb-0">€ * Metro²</h6>
+                                        <span class="text-secondary">{{inmueble.valor
+                                            / inmueble.metros | currency:
+                                            'EUR'}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex
+                                        justify-content-between
+                                        align-items-center flex-wrap">
+                                        <h6 class="mb-0">Anejos</h6>
+                                        <span class="text-secondary">{{inmueble.anejos}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex
+                                        justify-content-between
+                                        align-items-center flex-wrap">
+                                        <h6 class="mb-0">Tipo</h6>
+                                        <span class="text-secondary">{{inmueble.tipo}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex
+                                        justify-content-between
+                                        align-items-center flex-wrap">
+                                        <h6 class="mb-0">Fecha construccion</h6>
+                                        <span class="text-secondary">{{inmueble.fecha_construccion
+                                            | date}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5 class="card-title">
+                                    Dirección
+                                </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Comunidad autonoma</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{inmueble.comunidad_autonoma}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Provincia</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{inmueble.provincia}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Poblacion</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{inmueble.poblacion}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">C.P</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{inmueble.cp}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Número</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{inmueble.numero_calle}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Calle</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            {{inmueble.calle}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row gutters-sm" *ngIf="inmueble.tipo ===
+                                this.enumTipoInmueble.Edificacion">
+
+                                <div class="col-md-6 mb-3">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos de la edificacion
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Subtipo</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.tipo_edificacion}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Conservacion</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.conservacion}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Número</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.numero_calle}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Gastos
+                                                            comunidad</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.gastos_comunidad |
+                                                            currency: 'EUR' }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-3"
+                                    *ngIf="this.inmueble.tipo_edificacion
+                                    ===
+                                    this.enumTipoEdificacion.Local">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos del local
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-3"
+                                    *ngIf="this.inmueble.tipo_edificacion
+                                    ===
+                                    this.enumTipoEdificacion.Nave">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos de la nave
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Acondicionada</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.acondicionamiento}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-3"
+                                    *ngIf="this.inmueble.tipo_edificacion
+                                    ===
+                                    this.enumTipoEdificacion.Instalacion">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos de la instalacion
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <h6 class="mb-0">Tipo de
+                                                            instalacion</h6>
+                                                    </div>
+                                                    <div class="col-sm-7
+                                                        text-secondary">
+                                                        {{inmueble.tipo_instalacion}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-3"
+                                    *ngIf="this.inmueble.tipo_edificacion
+                                    ===
+                                    this.enumTipoEdificacion.Vivienda">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos de la vivienda
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Habitaciones</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.habitaciones}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Baños</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.banos}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Trastero</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.trastero}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Garaje</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.garaje}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Orientación</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.orientacion}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Terraza</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.terraza}}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h6 class="mb-0">Amueblado</h6>
+                                                    </div>
+                                                    <div class="col-sm-6
+                                                        text-secondary">
+                                                        {{inmueble.amueblado | personalBoolean}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-3"
+                                    *ngIf="this.inmueble.tipo_edificacion
+                                    ===
+                                    this.enumTipoEdificacion.Trastero">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos del trastero
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <h6 class="mb-0">Titularidad</h6>
+                                                    </div>
+                                                    <div class="col-sm-7
+                                                        text-secondary">
+                                                        {{inmueble.titularidad}}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 mb-3"
+                                    *ngIf="this.inmueble.tipo_edificacion
+                                    ===
+                                    this.enumTipoEdificacion.Garaje">
+                                    <div class="row-sm-4 mb-3">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <h5 class="card-title">
+                                                Datos del garaje
+                                            </h5>
+                                            </div>
+                                            <div class="card-body">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------------------------------------------------------------------------>
+                            </div>
+
+                            <div *ngIf="inmueble.tipo ===
+                                this.enumTipoInmueble.Terreno">
+                                <div class="col-sm-12 mb-3">
+                                    <div class="card h-100">
+                                        <div class="card-header">
+                                            <h5 class="card-title">
+                                            Datos del terreno
+                                        </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <h6 class="mb-0">Subtipo</h6>
+                                                </div>
+                                                <div class="col-sm-7
+                                                    text-secondary">
+                                                    {{inmueble.tipo_terreno}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <h6 class="mb-0">Aprovechamiento</h6>
+                                                </div>
+                                                <div class="col-sm-7
+                                                    text-secondary">
+                                                    {{inmueble.aprovechamiento}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-aviso></app-aviso>

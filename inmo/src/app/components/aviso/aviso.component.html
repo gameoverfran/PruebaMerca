@@ -1,0 +1,13 @@
+<ng-template #aviso let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Aviso error: {{codeError}}</h4>
+  </div>
+  <div class="modal-body text-center">
+    <h3>{{msgAviso}}</h3>
+    <!--ngb-progressbar *ngIf="pgBar" type="success" [value]="pgBar" [striped]="true"></ngb-progressbar-->
+    <p class="p-5"><button class="btn btn-warning" (click)="modal.close()">Entendido</button></p>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
+<div id="aviso"></div>

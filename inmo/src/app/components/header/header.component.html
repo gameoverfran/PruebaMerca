@@ -1,0 +1,35 @@
+<ul ngbNav #nav="ngbNav" class="nav-tabs padin" >
+
+  <li ngbNavItem >
+    <a ngbNavLink [routerLink]="['/home']" [routerLinkActive]="['active']">Inicio</a>
+  </li>
+  
+
+  <li ngbNavItem >
+    <a ngbNavLink [routerLink]="['/usuarios']" [routerLinkActive]="['active']" *ngIf="role == 'a' ">Usuarios</a>
+  </li>
+  
+  <li ngbNavItem >
+    <a ngbNavLink [routerLink]="['/inmuebles']" [routerLinkActive]="['active']" *ngIf="role == 'a'">Inmuebles</a>
+  </li>
+
+
+  <li ngbNavItem >
+    <a ngbNavLink [routerLink]="['/proyectos']" [routerLinkActive]="['active']" *ngIf="role == 'a' || role == 'u'">Proyectos</a>
+  </li>
+
+  <li ngbNavItem >
+    <a ngbNavLink [routerLink]="['/inversiones']" [routerLinkActive]="['active']" *ngIf="role == 'a' ">Inversiones</a>
+  </li>
+  <li ngbNavItem >
+    <a ngbNavLink [routerLink]="['/usuario']" [routerLinkActive]="['active']" *ngIf="role == 'a' || role == 'u'">Perfil</a>
+  </li>
+
+  <app-login class="login"></app-login>
+
+</ul>
+
+
+
+
+  
